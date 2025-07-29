@@ -1,0 +1,10 @@
+CREATE OR REPLACE FUNCTION fnc_fibonacci(pstop INTEGER default 10)
+RETURNS TABLE (num bigint) AS 
+$$
+WITH RECURSIVE r(n1, n2) AS
+(SELECT 0 AS n1, 1 AS n2
+UNION ALL
+SELECT n2,n1 + n2 FROM r WHERE n2 < pstop
+)
+SELECT n1 FROM r; 
+$$ LANGUAGE SQL;

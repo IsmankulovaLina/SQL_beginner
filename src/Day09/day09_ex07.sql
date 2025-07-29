@@ -1,0 +1,4 @@
+CREATE OR REPLACE FUNCTION func_minimum (VARIADIC arr numeric[])
+RETURNS numeric AS $$
+SELECT MIN(i) FROM UNNEST(arr) G(i);
+$$ LANGUAGE SQL;
